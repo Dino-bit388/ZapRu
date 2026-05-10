@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Вход\\Регистрация";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/AuthorizationRegistration.css">
+}
+
+<div class="auth-container">
+    <div class="auth-header">
+        <a href="#" class="logo">
+            <span>ZAPRU</span>
+        </a>
+        <div class="tagline">Продавай и покупай автозапчасти с выгодой</div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="login">Вход</button>
+        <button class="tab-btn" data-tab="register">Регистрация</button>
+    </div>
+
+   
+    <div id="login-panel" class="form-panel active">
+        <form id="login-form">
+            <div class="input-group">
+                <label>Электронная почта</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="ivan@example.ru" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Пароль</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="remember">
+                <label for="remember">Запомнить меня</label>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Войти</button>
+            <div class="auth-footer">
+                Нет аккаунта? <a href="#register-panel" id="switch-to-reg">Зарегистрируйтесь</a>
+            </div>
+            <div id="login-message" style="margin-top: 16px;"></div>
+        </form>
+    </div>
+
+    
+    <div id="register-panel" class="form-panel">
+        <form id="register-form">
+            <div class="name-row">
+                <div class="input-group">
+                    <label>Фамилия</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="reg-lastname" placeholder="Иванов" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Имя</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="reg-firstname" placeholder="Иван" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Отчество</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="reg-middlename" placeholder="Иванович">
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Электронная почта</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="reg-email" placeholder="ivan@example.ru" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Номер телефона</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-phone-alt"></i>
+                    <input type="tel" id="reg-phone" placeholder="+7 900 123-45-67" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Пароль</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-key"></i>
+                    <input type="password" id="reg-password" placeholder="Не менее 8 символов" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Подтверждение пароля</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-check-circle"></i>
+                    <input type="password" id="reg-password-confirm" placeholder="Повторите пароль" required>
+                </div>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="agree-terms" required>
+                <label for="agree-terms">Я принимаю условия <a href="#" style="color:#2563eb;">пользовательского соглашения</a></label>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-user-plus"></i> Зарегистрироваться</button>
+            <div class="auth-footer">
+                Уже есть аккаунт? <a href="#" id="switch-to-login">Войти</a>
+            </div>
+            <div id="register-message" style="margin-top: 16px;"></div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/AuthorizationRegistrationJS.js" asp-append-version="true"></script>
+}

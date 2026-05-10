@@ -1,0 +1,279 @@
+﻿@{
+    ViewData["Title"] = "ZAPRU";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/style.css">
+}
+
+@section Header
+{
+    <div class="container header-container">
+         <a href="/Home/Index" class="logo">ZAPRU</a>
+        <nav>
+            <ul>
+                <li><a href="#how-it-works">Как это работает</a></li>
+                <li><a href="#calculator">Калькулятор</a></li>
+                <li><a href="#catalog">Каталог запчастей</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-buttons">
+            <a href="/Home/Market"  class="btn btn-secondary">Выбрать деталь</a>
+            <a href="/Profile" class="btn btn-primary">Разместить объявление</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="header-user">
+                    <div class="notification-icon" id="notificationIcon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationBadge">0</span>
+                        <div class="dropdown-menu" id="notificationDropdown">
+                            <div class="dropdown-header">Уведомления</div>
+                            <div id="notificationList" class="notification-list"></div>
+                        </div>
+                    </div>
+                    <div class="profile-icon" id="profileIcon">
+                        <i class="fas fa-user-circle"></i>
+                        <div class="dropdown-menu" id="profileDropdown">
+                            <div class="profile-name" id="userFullName"></div>
+                            <a href="/Profile">Мой профиль</a>
+                            <a href="#" id="logoutBtn">Выйти</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Authorization" class="profile-icon" title="Войти / Регистрация">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            }
+        </div>
+    </div>
+}
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Продайте старый автомобиль по запчастям — получите в 2 раза больше</h1>
+            <p class="subtitle">Не продавайте машину целиком за копейки. Разберите на запчасти и выручите до 70% от её первоначальной стоимости.</p>
+
+            <div class="features">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Бесплатное размещение объявлений</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Продажа запчастей в среднем за 1–2 недели</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Помощь на каждом этапе</span>
+                </div>
+            </div>
+
+            <a href="#calculator" class="btn btn-primary">Бесплатно рассчитать выгоду →</a>
+        </div>
+    </div>
+</section>
+
+<section id="calculator" class="calculator">
+    <div class="container">
+        <h2>Сколько стоит ваш автомобиль в запчастях?</h2>
+        <p class="section-subtitle">Введите данные — узнайте реальную стоимость деталей</p>
+
+        <div class="calculator-form">
+            <div class="form-group">
+                <label for="car-brand">Марка автомобиля</label>
+                <select id="car-brand">
+                    <option value="">Выберите марку</option>
+                    <option value="lada">Lada</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="bmw">BMW</option>
+                    <option value="audi">Audi</option>
+                    <option value="ford">Ford</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="car-model">Модель</label>
+                <input type="text" id="car-model" placeholder="Например: Camry">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group" style="flex: 1; margin-right: 15px;">
+                    <label for="car-year">Год выпуска</label>
+                    <input type="number" id="car-year" min="1990" max="2023" placeholder="Например: 2010">
+                </div>
+
+                <div class="form-group" style="flex: 1;">
+                    <label for="car-mileage">Пробег (км)</label>
+                    <input type="number" id="car-mileage" placeholder="Например: 150000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="car-condition">Состояние</label>
+                <select id="car-condition">
+                    <option value="excellent">Отличное</option>
+                    <option value="good">Хорошее</option>
+                    <option value="average">Среднее</option>
+                    <option value="bad">Плохое (аварийное)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="car-region">Регион</label>
+                <select id="car-region">
+                    <option value="moscow">Москва</option>
+                    <option value="spb">Санкт-Петербург</option>
+                    <option value="other">Другой регион</option>
+                </select>
+            </div>
+
+            <button id="calculate-btn" class="btn btn-primary" style="width: 100%; padding: 15px;">Рассчитать выгоду</button>
+
+            <div class="result" id="result" style="display: none;">
+                <h3>Ваш автомобиль в запчастях стоит примерно: <span id="price-parts">350 000 ₽</span></h3>
+                <p>При продаже целиком: ~<span id="price-whole">200 000 ₽</span></p>
+                <p style="font-weight: bold; color: #10b981; font-size: 20px;">Выгода: +<span id="profit">150 000 ₽</span></p>
+                <a href="#post-ad" class="btn btn-primary" style="margin-top: 15px;">Разместить объявление бесплатно →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works" class="how-it-works">
+    <div class="container">
+        <h2>3 шага — и ваши запчасти проданы</h2>
+        <p class="section-subtitle">Всё прозрачно, безопасно и без посредников</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Разместите объявление</h3>
+                <p>Сфотографируйте авто, отметьте детали в готовой форме, опубликуйте за 10 минут</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Получайте заявки</h3>
+                <p>Покупатели сами пишут, договаривайтесь о цене, мы поможем с безопасной сделкой</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Получите деньги</h3>
+                <p>Продавайте детали по одной, выводите на карту или наличными, остаток утилизируем бесплатно</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="/Profile/Index" class="btn btn-primary">Начать продавать →</a>
+        </div>
+    </div>
+</section>
+
+<section class="benefits">
+    <div class="container">
+        <h2>Почему выбирают нас?</h2>
+        <p class="section-subtitle">Платформа, созданная для владельцев старых автомобилей</p>
+
+        <div class="benefits-list">
+            <div class="benefit-item">
+                <i class="fas fa-check-circle benefit-icon"></i>
+                <div>
+                    <h3>Бесплатно</h3>
+                    <p>Размещение без комиссии и скрытых платежей</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fas fa-bolt benefit-icon"></i>
+                <div>
+                    <h3>Быстро</h3>
+                    <p>Первые покупатели уже в день публикации</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fas fa-shield-alt benefit-icon"></i>
+                <div>
+                    <h3>Безопасно</h3>
+                    <p>Проверенные покупатели, советы по сделке</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fas fa-chart-line benefit-icon"></i>
+                <div>
+                    <h3>Выгодно</h3>
+                    <p>Продажа по запчастям = +40–70% к сумме</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <i class="fas fa-hand-sparkles benefit-icon"></i>
+                <div>
+                    <h3>Просто</h3>
+                    <p>Не нужно разбирать авто самому, покупатели приедут</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#faq" class="btn btn-secondary">Узнать больше в FAQ →</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZAPRU</h3>
+                <p>Платформа для продажи автомобилей по запчастям</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Информация</h3>
+                <ul class="footer-links">
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#">Реквизиты</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Документы</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                    <li><a href="#">Карта сайта</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: 8 800 000-00-00</li>
+                    <li>Email: help@zapchastimarket.ru</li>
+                    <li>Часы работы: 9:00–21:00</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 ZAPRU. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+@section Scripts
+{
+    <script src="~/js/MyScript.js" asp-append-version="true"></script>
+}

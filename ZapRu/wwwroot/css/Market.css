@@ -1,0 +1,317 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    min-height: 100vh;
+}
+
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding: 40px 20px;
+}
+
+    .page-header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 12px;
+    }
+
+    .page-header p {
+        font-size: 18px;
+        color: #475569;
+    }
+
+.users-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.user-card {
+    background: #fff;
+    border-radius: 32px;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+    .user-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 25px 40px -14px rgba(0,0,0,0.15);
+    }
+
+.user-info {
+    padding: 24px 28px 16px 28px;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.user-details {
+    flex: 1;
+}
+
+    .user-details h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 6px;
+    }
+
+.user-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: #5b6e8c;
+    margin-bottom: 8px;
+}
+
+    .user-meta i {
+        width: 16px;
+        color: #2563eb;
+        margin-right: 4px;
+    }
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+    .rating i {
+        color: #fbbf24;
+        font-size: 14px;
+    }
+
+.carousel-container {
+    position: relative;
+    padding: 20px 28px 28px 28px;
+}
+
+.carousel-track {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    aspect-ratio: 16 / 10;
+    background: #f8fafc;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 20px;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    z-index: 2;
+}
+
+    .carousel-btn:hover {
+        background: #2563eb;
+        color: white;
+        transform: translateY(-50%) scale(1.05);
+    }
+
+.btn-prev {
+    left: 12px;
+}
+
+.btn-next {
+    right: 12px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #cbd5e1;
+    border-radius: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+    .dot.active {
+        width: 24px;
+        background: #2563eb;
+    }
+
+@media (max-width: 680px) {
+    .user-card {
+        max-width: 100%;
+    }
+
+    .user-info {
+        padding: 20px;
+    }
+
+    .carousel-container {
+        padding: 12px 20px 20px 20px;
+    }
+
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+/* Специфичный хедер для страницы стендов */
+.market-header-container {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #eef2f6;
+}
+
+.market-header-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Стили для списка запчастей */
+.parts-list {
+    margin-top: 16px;
+    border-top: 1px solid #eef2f6;
+    padding: 16px 28px 20px;
+}
+
+    .parts-list h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #1e293b;
+    }
+
+.part-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.part-name {
+    font-weight: 500;
+    flex: 2;
+    min-width: 120px;
+}
+
+.part-price {
+    color: #2563eb;
+    font-weight: 600;
+    min-width: 100px;
+}
+
+.part-condition {
+    color: #5b6e8c;
+    font-size: 13px;
+    min-width: 80px;
+}
+
+.bid-btn {
+    background: #f1f5f9;
+    color: #2563eb;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+    .bid-btn:hover {
+        background: #2563eb;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+/* Адаптив для мобилок */
+@media (max-width: 640px) {
+    .part-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .bid-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

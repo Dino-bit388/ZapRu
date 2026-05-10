@@ -1,0 +1,409 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 32px;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Карточка пользователя */
+.user-card-large {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px;
+    background: #ffffff;
+    border-bottom: 1px solid #eef2f6;
+    flex-wrap: wrap;
+}
+
+.logo-in-user-card {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.avatar-large {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+}
+
+.user-info-large {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.user-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 14px;
+    color: #475569;
+    margin: 8px 0;
+}
+
+    .user-contacts i {
+        width: 20px;
+        color: #2563eb;
+        margin-right: 6px;
+    }
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #2563eb;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .btn-secondary:hover {
+        background: #e2e8f0;
+        transform: translateY(-1px);
+    }
+
+/* Табы */
+.tabs {
+    display: flex;
+    gap: 8px;
+    padding: 0 32px;
+    border-bottom: 1px solid #eef2f6;
+    background: #ffffff;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+    .tab-btn.active {
+        color: #2563eb;
+        border-bottom-color: #2563eb;
+    }
+
+.tab-content {
+    display: none;
+    padding: 32px;
+    background: #fff;
+}
+
+    .tab-content.active {
+        display: block;
+    }
+
+/* Мои объявления – карусель с кнопками */
+.ads-carousel {
+    position: relative;
+    background: #f8fafc;
+    border-radius: 28px;
+    padding: 24px;
+}
+
+.carousel-inner {
+    overflow: hidden;
+}
+
+.ad-card {
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.ad-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+    .ad-actions button {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 6px 12px;
+        border-radius: 30px;
+        transition: 0.2s;
+    }
+
+        .ad-actions button:hover {
+            background: #f1f5f9;
+        }
+
+.car-photos-preview {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+}
+
+    .car-photos-preview img {
+        border-radius: 16px;
+        object-fit: cover;
+    }
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 24px;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+    .carousel-control:hover {
+        background: #2563eb;
+        color: white;
+    }
+
+.prev {
+    left: -22px;
+}
+
+.next {
+    right: -22px;
+}
+
+/* Форма создания объявления */
+.ad-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #1e293b;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 16px;
+        font-family: inherit;
+        font-size: 14px;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+#partsContainer {
+    margin-bottom: 16px;
+}
+
+.part-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+    .part-row select, .part-row input {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .part-row button {
+        background: #fee2e2;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 100%;
+}
+
+    .btn-primary:hover {
+        background: #1e40af;
+    }
+
+#addPartBtn {
+    background: #f1f5f9;
+    color: #2563eb;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+/* Отклики и покупки */
+.bids-list, .purchases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bid-card, .purchase-card {
+    background: #f8fafc;
+    border-radius: 24px;
+    padding: 20px;
+    border-left: 4px solid #2563eb;
+}
+
+    .bid-card div, .purchase-card div {
+        margin-bottom: 8px;
+    }
+
+.accept-bid, .reject-bid {
+    padding: 6px 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 12px;
+}
+
+.accept-bid {
+    background: #10b981;
+    color: white;
+}
+
+.reject-bid {
+    background: #ef4444;
+    color: white;
+}
+
+/* Сообщения */
+.error-msg, .success-msg {
+    padding: 12px;
+    border-radius: 16px;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.error-msg {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.success-msg {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-container {
+        border-radius: 24px;
+    }
+
+    .user-card-large {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .tabs {
+        padding: 0 16px;
+        overflow-x: auto;
+    }
+
+    .tab-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .tab-content {
+        padding: 20px;
+    }
+
+    .carousel-control {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+
+    .prev {
+        left: -12px;
+    }
+
+    .next {
+        right: -12px;
+    }
+
+    .part-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

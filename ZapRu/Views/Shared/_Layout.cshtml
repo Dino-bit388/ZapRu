@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Продайте старый автомобиль по запчастям — получите в 2 раза больше">
+    <title>@ViewData["Title"]</title>
+    @RenderSection("Styles", required: false)
+    <link rel="icon" type="image/svg" href="~/favicon.svg" sizes="any">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <script src="~/js/SmoothScrollingForAllAnchors.js"></script>
+</head>
+<body>
+    <header>
+        @RenderSection("Header", required: false)
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/notifications.js" asp-append-version="true"></script>
+</body>
+</html>

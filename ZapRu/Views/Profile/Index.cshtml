@@ -1,0 +1,107 @@
+﻿@model ZapRu.Entities.User
+@{
+    ViewData["Title"] = "Личный кабинет — ZAPRU";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Profile.css">
+}
+
+
+
+<div class="profile-container">
+    <div class="user-card-large">
+        <a href="/Home/Index" class="logo-in-user-card">ZAPRU</a>        
+        <div class="avatar-large">
+            @(Model.FirstName?.Length > 0 ? Model.FirstName[0].ToString() : "")
+            @(Model.LastName?.Length > 0 ? Model.LastName[0].ToString() : "")
+        </div>
+        <div class="user-info-large">
+            <div class="user-name" id="userName">@Model.LastName @Model.FirstName @Model.MiddleName</div>
+            <div class="user-contacts">
+                <span><i class="fas fa-envelope"></i> <span id="userEmail">@Model.Email</span></span>
+                <span><i class="fas fa-phone-alt"></i> <span id="userPhone">@Model.Phone</span></span>
+            </div>
+            <button id="editProfileBtn" class="btn-secondary">Редактировать профиль</button>
+        </div>
+    </div>
+
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="ads">Мои объявления</button>
+        <button class="tab-btn" data-tab="create">Создать объявление</button>
+        <button class="tab-btn" data-tab="bids">Отклики</button>
+        <button class="tab-btn" data-tab="purchases">Корзина</button>
+    </div>
+
+
+    <div class="tab-content active" id="adsTab">
+        <div class="ads-carousel">
+            <div class="carousel-inner" id="adsCarouselInner">
+            </div>
+            <button class="carousel-control prev" id="prevAdBtn">‹</button>
+            <button class="carousel-control next" id="nextAdBtn">›</button>
+        </div>
+    </div>
+
+    <div class="tab-content" id="createTab">
+        <form id="adForm" class="ad-form">
+            <input type="hidden" id="editCarId" />
+            <div class="form-group">
+                <label>Марка и модель</label>
+                <select id="carModelId" required>
+                    <option value="">Выберите авто</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Год выпуска</label>
+                    <input type="number" id="year" required />
+                </div>
+                <div class="form-group">
+                    <label>Пробег (км)</label>
+                    <input type="number" id="mileage" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Состояние</label>
+                <select id="condition">
+                    <option>Отличное</option>
+                    <option>Хорошее</option>
+                    <option>Аварийное</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Регион</label>
+                <input type="text" id="region" />
+            </div>
+            <div class="form-group">
+                <label>Описание</label>
+                <textarea id="description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Детали (можно добавить несколько)</label>
+                <div id="partsContainer"></div>
+                <button type="button" id="addPartBtn" class="btn-secondary">+ Добавить деталь</button>
+            </div>
+            <div class="form-group">
+                <label>Фотографии автомобиля</label>
+                <input type="file" id="carPhotos" multiple accept="image/jpeg,image/png,image/webp" />
+            </div>
+            <button type="submit" class="btn-primary">Сохранить объявление</button>
+            <div id="createMessage"></div>
+        </form>
+    </div>
+
+    <div class="tab-content" id="bidsTab">
+        <div id="bidsList" class="bids-list"></div>
+    </div>
+
+    <div class="tab-content" id="purchasesTab">
+        <div id="purchasesList" class="purchases-list"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Profile.js" asp-append-version="true"></script>
+}
