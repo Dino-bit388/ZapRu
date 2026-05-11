@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace ZapRu.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AbsolB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,12 +16,12 @@ namespace ZapRu.Migrations
                 name: "CarModels",
                 columns: table => new
                 {
-                    CarModelID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Brand = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Model = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    YearStart = table.Column<int>(type: "INTEGER", nullable: true),
-                    YearEnd = table.Column<int>(type: "INTEGER", nullable: true)
+                    CarModelID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Brand = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Model = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    YearStart = table.Column<int>(type: "integer", nullable: true),
+                    YearEnd = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,10 +32,10 @@ namespace ZapRu.Migrations
                 name: "PartsCatalogs",
                 columns: table => new
                 {
-                    PartCatID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    Category = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false)
+                    PartCatID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Category = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,17 +46,17 @@ namespace ZapRu.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    Phone = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    MiddleName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
-                    RegisteredAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastLogin = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    IsBlocked = table.Column<bool>(type: "INTEGER", nullable: false)
+                    UserID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    MiddleName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false),
+                    RegisteredAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    LastLogin = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    IsBlocked = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,19 +67,19 @@ namespace ZapRu.Migrations
                 name: "Cars",
                 columns: table => new
                 {
-                    CarID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    SellerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    CarModelID = table.Column<int>(type: "INTEGER", nullable: false),
-                    VIN = table.Column<string>(type: "TEXT", maxLength: 17, nullable: true),
-                    Mileage = table.Column<int>(type: "INTEGER", nullable: true),
-                    Condition = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Region = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    Created_At = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Updated_At = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    ManufactureYear = table.Column<int>(type: "INTEGER", nullable: false)
+                    CarID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SellerID = table.Column<int>(type: "integer", nullable: false),
+                    CarModelID = table.Column<int>(type: "integer", nullable: false),
+                    VIN = table.Column<string>(type: "character varying(17)", maxLength: 17, nullable: true),
+                    Mileage = table.Column<int>(type: "integer", nullable: true),
+                    Condition = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Region = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ManufactureYear = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,16 +102,16 @@ namespace ZapRu.Migrations
                 name: "PriceEstimates",
                 columns: table => new
                 {
-                    PriceEstimateID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserID = table.Column<int>(type: "INTEGER", nullable: false),
-                    CarModelID = table.Column<int>(type: "INTEGER", nullable: false),
-                    Mileage = table.Column<int>(type: "INTEGER", nullable: true),
-                    Condition = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Region = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    EstimatedValue = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Year = table.Column<int>(type: "INTEGER", nullable: false)
+                    PriceEstimateID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserID = table.Column<int>(type: "integer", nullable: false),
+                    CarModelID = table.Column<int>(type: "integer", nullable: false),
+                    Mileage = table.Column<int>(type: "integer", nullable: true),
+                    Condition = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Region = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    EstimatedValue = table.Column<decimal>(type: "numeric", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Year = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,15 +134,15 @@ namespace ZapRu.Migrations
                 name: "Parts",
                 columns: table => new
                 {
-                    PartID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CarID = table.Column<int>(type: "INTEGER", nullable: false),
-                    PartCatID = table.Column<int>(type: "INTEGER", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: true),
-                    Condition = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    IsSold = table.Column<bool>(type: "INTEGER", nullable: false),
-                    SoldAt = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    ViewsCount = table.Column<int>(type: "INTEGER", nullable: false)
+                    PartID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CarID = table.Column<int>(type: "integer", nullable: false),
+                    PartCatID = table.Column<int>(type: "integer", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: true),
+                    Condition = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    IsSold = table.Column<bool>(type: "boolean", nullable: false),
+                    SoldAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ViewsCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,16 +165,16 @@ namespace ZapRu.Migrations
                 name: "Notifications",
                 columns: table => new
                 {
-                    NotificationID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserID = table.Column<int>(type: "INTEGER", nullable: false),
-                    PartID = table.Column<int>(type: "INTEGER", nullable: true),
-                    FromUserID = table.Column<int>(type: "INTEGER", nullable: true),
-                    Type = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    Message = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
-                    IsRead = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ResponseStatus = table.Column<bool>(type: "INTEGER", nullable: true)
+                    NotificationID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserID = table.Column<int>(type: "integer", nullable: false),
+                    PartID = table.Column<int>(type: "integer", nullable: true),
+                    FromUserID = table.Column<int>(type: "integer", nullable: true),
+                    Type = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Message = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    IsRead = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ResponseStatus = table.Column<bool>(type: "boolean", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -201,14 +202,14 @@ namespace ZapRu.Migrations
                 name: "Photos",
                 columns: table => new
                 {
-                    PhotoID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    EntityType = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
-                    EntityID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FilePath = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
-                    Uploaded_At = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CarID = table.Column<int>(type: "INTEGER", nullable: true),
-                    PartID = table.Column<int>(type: "INTEGER", nullable: true)
+                    PhotoID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EntityType = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    EntityID = table.Column<int>(type: "integer", nullable: false),
+                    FilePath = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    Uploaded_At = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CarID = table.Column<int>(type: "integer", nullable: true),
+                    PartID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -229,16 +230,16 @@ namespace ZapRu.Migrations
                 name: "Transactions",
                 columns: table => new
                 {
-                    TransactionID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    PartID = table.Column<int>(type: "INTEGER", nullable: false),
-                    BuyerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    SellerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    AgreedPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    PaidAt = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    CompletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    TransactionID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PartID = table.Column<int>(type: "integer", nullable: false),
+                    BuyerID = table.Column<int>(type: "integer", nullable: false),
+                    SellerID = table.Column<int>(type: "integer", nullable: false),
+                    AgreedPrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    PaidAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    CompletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -267,16 +268,16 @@ namespace ZapRu.Migrations
                 name: "Bids",
                 columns: table => new
                 {
-                    BidID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    PartID = table.Column<int>(type: "INTEGER", nullable: false),
-                    BuyerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    SellerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    OfferedPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Comment = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Status = table.Column<string>(type: "TEXT", nullable: false),
-                    TransactionID = table.Column<int>(type: "INTEGER", nullable: true)
+                    BidID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PartID = table.Column<int>(type: "integer", nullable: false),
+                    BuyerID = table.Column<int>(type: "integer", nullable: false),
+                    SellerID = table.Column<int>(type: "integer", nullable: false),
+                    OfferedPrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: false),
+                    TransactionID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -310,14 +311,14 @@ namespace ZapRu.Migrations
                 name: "Contracts",
                 columns: table => new
                 {
-                    ContractID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    TransactionID = table.Column<int>(type: "INTEGER", nullable: false),
-                    ContractNumber = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    FilePath = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
-                    SignedBySeller = table.Column<bool>(type: "INTEGER", nullable: false),
-                    SignedByBuyer = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    ContractID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TransactionID = table.Column<int>(type: "integer", nullable: false),
+                    ContractNumber = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    FilePath = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    SignedBySeller = table.Column<bool>(type: "boolean", nullable: false),
+                    SignedByBuyer = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

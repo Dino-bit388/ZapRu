@@ -9,7 +9,7 @@ namespace ZapRu.Data
         {
             var optionsBuilder = new DbContextOptionsBuilder<ZapRuDbContext>();
 
-            optionsBuilder.UseSqlite("Data Source=app.db");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=ZapRuDb;Username=postgres;Password=GP1A091104"); 
 
             return new ZapRuDbContext(optionsBuilder.Options);
         }

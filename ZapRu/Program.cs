@@ -7,9 +7,11 @@ using ZapRu.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var dbPath = Path.Combine(AppContext.BaseDirectory,"app.db");
-Console.WriteLine($">>> DB Path: {dbPath}");
-builder.Services.AddDbContext<ZapRuDbContext>(options => options.UseSqlite($"Data Source={dbPath}"));
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ZapRuDbContext>(options => options.UseNpgsql(connectionString));
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
